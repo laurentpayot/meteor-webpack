@@ -1,4 +1,4 @@
-y 1. What's the Fuzz About Webpack?
+# 1. What's the Fuzz About Webpack?
 
 ## Do I really need this?
 
