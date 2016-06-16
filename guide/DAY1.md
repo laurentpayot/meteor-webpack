@@ -14,13 +14,13 @@ That dumb stack has to be incredibly easy and fast to setup. And this is the rea
 
 ## Meteor Build System to the Rescue!
 
-This is where Meteor build system comes handy. It is already working pretty well, their is no configuration needed and you can use custom build plugins. Everything we actually need to use the goodies of Webpack without the complexity layers that it usually comes with.
+This is where Meteor build system comes handy. It is already working pretty well, there is no configuration needed and you can use custom build plugins. Everything we actually need to use the goodies of Webpack without the complexity layers that it usually comes with.
 
 What if you had at your disposition all the Webpack goodies to be more productive but had zero configuration needed? What if all you needed to do was adding a few Meteor packages and everything was setup for you? What if you don't even need to know how Webpack configuration are working? What if you had access to all the Webpack goodies that you can't usually have within the Meteor world today?
 
 This is exactly what the Meteor package `webpack:webpack` will do for you!
 
-Before we dive head-first on Webpack, you have to understand why you need it (or not). There is some basic stuff you probably want at the beginning of any project and their is some stuff you should wait until it is mature enough. I'll let you know my own point of view and let you be the judge for your own projects. If you feel like something is wrong, just don't do it! But I can tell you most of the stuff will make you feel more comfortable with Meteor than ever before.
+Before we dive head-first on Webpack, you have to understand why you need it (or not). There is some basic stuff you probably want at the beginning of any project and there is some stuff you should wait until it is mature enough. I'll let you know my own point of view and let you be the judge for your own projects. If you feel like something is wrong, just don't do it! But I can tell you most of the stuff will make you feel more comfortable with Meteor than ever before.
 
 Webpack 2 is also going to bring great optimizations and better code splitting in the future. The release is far from being announced so let's keep our focus on what matters today.
 
@@ -29,7 +29,7 @@ Hot reload is one of the most useful feature Webpack has. When you make a change
 
 Hot reload is usually something hard to setup correctly. The kind of complexity you don't want to go through. But you know what? You have NOTHING to do with Meteor because the Webpack package is doing all the work for you. 
 
-[Someone even tried to replicate this for React component within native Meteor.](https://forums.meteor.com/t/react-hotloading-in-native-meteor-is-ready-i-e-no-webpack/17523) Seriously kudos for making this work. This is still experimental and limited to React components but their is hopes.
+[Someone even tried to replicate this for React component within native Meteor.](https://forums.meteor.com/t/react-hotloading-in-native-meteor-is-ready-i-e-no-webpack/17523) Seriously kudos for making this work. This is still experimental and limited to React components but there is hope.
 
 Hot reloading with Webpack can do more than that. You can learn how to setup hot reload to work with other stuff than React components. You can use it with any library (it's pretty useful for your Redux store if you have one). You can even get hot reload with Angular 2. The only piece you cannot hot reload is your server-side code. We might find a way to figure this out in Meteor someday (that project is classified for now ;)).
 
@@ -68,7 +68,7 @@ And let me warn you at the same time when you SHOULD NOT use it:
 - DO NOT split every possible user roles or app modules
 - DO NOT split multiple things on the same page
 
-My rule of thumb is no code splitting until it is absolutely required outside a single one for the admin panel. You are going to hurt your performance otherwise. Their is an overhead at loading a new script by the client every time it hits a code splitting point.
+My rule of thumb is no code splitting until it is absolutely required outside a single one for the admin panel. You are going to hurt your performance otherwise. There is an overhead at loading a new script by the client every time it hits a code splitting point.
 
 The good news is someday when you will need more code splitting, it will be super easy to plug it anywhere. It will be there to cover your ass when you'll need backup :).
 
