@@ -25,7 +25,7 @@ Before we dive head-first on Webpack, you have to understand why you need it (or
 Webpack 2 is also going to bring great optimizations and better code splitting in the future. The release is far from being announced so let's keep our focus on what matters today.
 
 ### Hot Reload With No Page Refresh
-Hot reload is one of the most useful feature Webpack has. When you make a change in your code, what you usually do is go in your browser and do F5. With Meteor, it just do the page refresh for you. However, this is very slow. What hot reload with Webpack does is it updates your page on the spot with your new code without loosing the state of your components and in real-time. No page refresh at all! It is seriously blazing fast.
+Hot reload is one of the most useful feature Webpack has. When you make a change in your code, what you usually do is go in your browser and do F5. With Meteor, it just do the page refresh for you. However, this is very slow. What hot reload with Webpack does is it updates your page on the spot with your new code without losing the state of your components and in real-time. No page refresh at all! It is seriously blazing fast.
 
 Hot reload is usually something hard to setup correctly. The kind of complexity you don't want to go through. But you know what? You have NOTHING to do with Meteor because the Webpack package is doing all the work for you. 
 
@@ -80,11 +80,11 @@ You will probably some day want to optimize some stuff on your application for p
 
 This is going to be covered with much more details on day 4.
 
-### Testing without loosing your shirt
+### Testing without losing your shirt
 
 We all know we should test our code but who really got the time for that right? We all have tight deadlines and most the time, it's the first thing we drop. It's super hard to setup and once you have everything ready to go, you discover that you need to mock half of your code to make them work.
 
-Have you ever felt like you were writing tests for the sake of test but couldn't really relly on them? Or every time you do a change you break your test (not your code actually). This is a constant struggle for beginner unit testers. By using Webpack and some cool librairies, I'll show you how you can do testing without loosing your shirt in the process.
+Have you ever felt like you were writing tests for the sake of test but couldn't really relly on them? Or every time you do a change you break your test (not your code actually). This is a constant struggle for beginner unit testers. By using Webpack and some cool librairies, I'll show you how you can do testing without losing your shirt in the process.
 
 This is going to be covered with much more details on day 5.
 
@@ -98,5 +98,5 @@ See ya tomorrow!
 - [ ] Day 2. How to Setup your First Project (and Migrate Old Ones)
 - [ ] Day 3. Bundling your CSS / Assets the Right Way
 - [ ] Day 4. Code Splitting and Optimizing your Code for Production
-- [ ] Day 5. Write Unit Tests Without Loosing your Shirt
+- [ ] Day 5. Write Unit Tests Without Losing your Shirt
 
