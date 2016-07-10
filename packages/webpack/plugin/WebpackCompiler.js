@@ -109,6 +109,19 @@ WebpackCompiler = class WebpackCompiler {
       webpackConfig.resolve.root = _path.join(CWD, settings.root);
     }
 
+    if (settings.resolve.modules && typeof settings.resolve.modules === 'object' && Array.isArray(settings.resolve.modules)) {
+      webpackConfig.resolve.modulesDirectories = settings.resolve.modules;
+      webpackConfig.resolve.modules = settings.resolve.modules;
+    }
+
+    if (settings.resolve.packageMains && typeof settings.resolve.packageMains === 'object' && Array.isArray(settings.resolve.packageMains)) {
+      webpackConfig.resolve.packageMains = settings.resolve.packageMains;
+    }
+
+    if (settings.resolve.alias && typeof settings.resolve.alias === 'object' && !Array.isArray(settings.resolve.alias)) {
+      webpackConfig.resolve.alias = settings.resolve.alias;
+    }
+
     if (settings.externals && typeof settings.externals === 'object' && !Array.isArray(settings.externals)) {
       webpackConfig.externals = settings.externals;
     }
