@@ -1,7 +1,7 @@
 var weight = 300;
 
 function dependencies(settings) {
-  const devDependencies = {
+  var devDependencies = {
     'sass-loader': '^3.1.2',
     'node-sass': '^3.4.2'
   };
