@@ -52,7 +52,8 @@ WebpackCompiler = class WebpackCompiler {
       throw new Error('You cannot use the webpack compiler inside a package');
     }
 
-    const configFiles = filterFiles(files, 'webpack.conf.js');
+    const configFiles = filterFiles(files, ['webpack.conf.js', 'webpack.config.js'])
+      .filter(file => file.getPathInPackage().indexOf('node_modules') < 0);
 
     const platform = files[0].getArch();
     const shortName =
@@ -87,7 +88,7 @@ WebpackCompiler = class WebpackCompiler {
       }
     }
 
-    const settingsFiles = filterFiles(files, 'webpack.json');
+    const settingsFiles = filterFiles(files, ['webpack.json']);
     const settings = readSettings(settingsFiles, shortName);
 
     let webpackConfig = {
@@ -215,8 +216,10 @@ function updateNpmPackages(target, configs) {
   let pkg = {};
   const packageFile = path.join(CWD, 'package.json');
 
-  if (fs.existsSync(packageFile)) {
+  try {
     pkg = JSON.parse(fs.readFileSync(packageFile).toString());
+  } catch(e) {
+    // Do nothing if we can't read the file
   }
 
   if (!pkg.dependencies) {
@@ -529,7 +532,11 @@ function prepareConfig(target, webpackConfig, usingDevServer, settings) {
 
   if (!IS_DEBUG) {
     // Production optimizations
-    webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin());
+    webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: true
+      }
+    }));
 
     if (!settings.disableOccurenceOrderPlugin) {
       webpackConfig.plugins.push(new webpack.optimize.OccurenceOrderPlugin());
@@ -622,11 +629,6 @@ function compile(target, entryFile, configFiles, webpackConfig) {
         'if (typeof global.jQuery === \'undefined\') { global.jQuery = {}; }\n' + // Polyfill so importing jquery in a file doesn't crash the server
         'WebpackStats = ' + JSON.stringify(webpackStats) + ';\n' + // Infos on Webpack build
         data;
-
-      if (_fs.existsSync(_path.join(CWD, 'node_modules', 'react'))) {
-        // Also expose React on the server for ssr
-        data = 'global.React = require(\'react\');\n' + data;
-      }
 
       if (IS_BUILD) {
         // Copy the NPM modules you need in production for the server
@@ -747,9 +749,9 @@ function compileDevServer(target, entryFile, configFiles, webpackConfig) {
   devServerApp.use(devServerHotMiddleware[target]);
 }
 
-function filterFiles(files, name) {
+function filterFiles(files, names) {
   return files
-    .filter(file => file.getBasename() === name)
+    .filter(file => names.indexOf(file.getBasename()) >= 0)
     // Sort by shallower files
     .sort((file1, file2) => file1.getPathInPackage().split('/').length - file2.getPathInPackage().split('/').length);
 }
@@ -781,8 +783,8 @@ const ignoreTarget = Meteor.isServer ? 'client' : 'server';
 let testFiles = [];
 
 if (Meteor.isAppTest) {
-${directories.map(directory => `  testFiles = testFiles.concat(require.context('./${directory}', true, /\.(test|spec|app-test|app-spec)(s)?\.(.+)$/i).keys()).map(file => './${directory}' + file.substr(1));\n`)}} else {
-${directories.map(directory => `  testFiles = testFiles.concat(require.context('./${directory}', true, /\.(test|spec)(s)?\.(.+)$/i).keys()).map(file => './${directory}' + file.substr(1));\n`)}}
+${directories.map(directory => `  testFiles = testFiles.concat(require.context('./${directory}', true, /\.(test|spec|app-test|app-spec)(s)?\.(.+)$/i).keys()).map(file => './${directory}' + file.substr(1));\n`).join('')}} else {
+${directories.map(directory => `  testFiles = testFiles.concat(require.context('./${directory}', true, /\.(test|spec)(s)?\.(.+)$/i).keys()).map(file => './${directory}' + file.substr(1));\n`).join('')}}
 
 testFiles
   .filter(file => file.indexOf('/' + ignoreTarget + '/') < 0)
