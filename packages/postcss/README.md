@@ -1,4 +1,4 @@
-# webpack:sass by [The Reactive Stack](https://thereactivestack.com)
+# webpack:postcss by [The Reactive Stack](https://thereactivestack.com)
 Meteor package to integrate PostCSS (.css) import with [Webpack](https://github.com/thereactivestack/meteor-webpack)
 
 ## Warning
