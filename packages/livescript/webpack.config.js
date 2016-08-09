@@ -51,7 +51,7 @@ function config(settings, require) {
 
   return {
     loaders: [
-      { test: /\.ls$/, loader: 'babel?' + JSON.stringify(babelSettings) + '!livescript', exclude: /\.meteor|node_modules/ }
+      { test: /\.ls$/, loader: 'babel?' + JSON.stringify(babelSettings) + '!livescript?map=linked-src', exclude: /\.meteor|node_modules/ }
     ],
     extensions: ['.ls'],
   };
