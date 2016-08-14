@@ -1,6 +1,6 @@
 Package.describe({
     name: 'webpack:webpack',
-    version: '1.3.3',
+    version: '1.3.4',
     summary: 'Seamlessly integrate Webpack to improve Meteor build system',
     git: 'https://github.com/thereactivestack/meteor-webpack.git',
     documentation: 'README.md'
