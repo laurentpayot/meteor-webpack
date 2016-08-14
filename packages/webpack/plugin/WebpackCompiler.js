@@ -743,7 +743,7 @@ function compileDevServer(target, entryFile, configFiles, webpackConfig) {
     watchOptions: webpackConfig.watchOptions
   });
 
-  devServerHotMiddleware[target] = Npm.require('webpack-hot-middleware')(compiler);
+  devServerHotMiddleware[target] = Npm.require('webpack-hot-middleware')(compiler,webpackConfig.devServer);
 
   devServerApp.use(devServerMiddleware[target]);
   devServerApp.use(devServerHotMiddleware[target]);
