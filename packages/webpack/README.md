@@ -55,6 +55,7 @@ You can tweak your Webpack settings by using a webpack.json file in the root of 
 - `postcss`: Array of plugins to use
 - `externals` (object): Map external modules to a global variable
 - `noParse` (array of string): List the files you want Webpack to not parse (like huge libraries already built)
+- `resolve` (object): Configure modules or aliases to write shorter import statements
 - ...
 
 See your package readme for more infos on the settings available.

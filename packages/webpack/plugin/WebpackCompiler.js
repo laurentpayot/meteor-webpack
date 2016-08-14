@@ -110,6 +110,27 @@ WebpackCompiler = class WebpackCompiler {
       webpackConfig.resolve.root = _path.join(CWD, settings.root);
     }
 
+    // support "resolve.modules" to write cleaner import statements
+    if (
+      settings.resolve &&
+      settings.resolve.modules &&
+      typeof settings.resolve.modules === 'object' &&
+      Array.isArray(settings.resolve.modules)
+    ) {
+      webpackConfig.resolve.modulesDirectories = settings.resolve.modules;
+      webpackConfig.resolve.modules = settings.resolve.modules;
+    }
+
+    // support "resolve.alias" to write shorter import statements
+    if (
+      settings.resolve &&
+      settings.resolve.alias &&
+      typeof settings.resolve.alias === 'object' &&
+      !Array.isArray(settings.resolve.alias)
+    ) {
+      webpackConfig.resolve.alias = settings.resolve.alias;
+    }
+
     if (settings.externals && typeof settings.externals === 'object' && !Array.isArray(settings.externals)) {
       webpackConfig.externals = settings.externals;
     }
