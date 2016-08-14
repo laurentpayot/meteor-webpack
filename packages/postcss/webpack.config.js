@@ -3,6 +3,7 @@ var weight = 210;
 function dependencies(settings) {
   return {
     devDependencies: {
+      'postcss': '^5.1.2',
       'postcss-loader': '^0.8.1'
     }
   };
